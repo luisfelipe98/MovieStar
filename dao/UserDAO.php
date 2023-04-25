@@ -52,6 +52,30 @@ class UserDAO implements UserDAOInterface {
 
     public function findByEmail(User $user) {
 
+        if ($user->getEmail() != "") {
+
+            $query = "SELECT * FROM users WHERE email = :email";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindValue(":email", $user->getEmail());
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) { 
+
+                $data = $stmt->fetch(PDO::FETCH_ASSOC);
+                $newData = $this->buildUser($data);
+
+                return $newData;
+
+            } else { 
+                return false;
+            }
+        } else {
+            return false;
+        }
+
     }
 
     public function findById(User $user) {

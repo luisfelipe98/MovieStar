@@ -8,6 +8,7 @@ require_once("db.php");
 
 $message = new Message($BASE_URL);
 
+$userDAO = new UserDAO($conn, $BASE_URL);
 
 // Resgata o tipo de formulário
 $type = filter_input(INPUT_POST, "type");
@@ -20,19 +21,39 @@ if ($type === "register") {
    $email = filter_input(INPUT_POST, "email");
    $password = filter_input(INPUT_POST, "password");
    $confirmPassword = filter_input(INPUT_POST, "confirmpassword");
+   
+   $user = new User();
 
+   $user->setName($name);
+   $user->setlastName($lastName);
+   $user->setEmail($email);
+   $user->setPassword($password);
+   
    // Verificação de dados mínimos
-   if ($name && $lastName && $email && $password) {
+   if ($user->getName() && $user->getLastName() && $user->getEmail() && $user->getPassword()) {
 
+    // Verificar se as senhas batem
+    if ($user->getPassword() === $confirmPassword) {
 
+        // Verificar se o email já está cadastrado no sistema
+        if ($userDAO->findByEmail($user) === false) {
+
+            echo "Nenhum usuário foi encontrado!";
+
+        } else {
+            // Enviar uma mensagem de erro que o usuário existente
+            $message->setMessage("Usuário já cadastrado, tente outro e-mail", "error", "back");
+        }
+
+    } else {
+        // Enviar uma mensagem de erro de senhas não batem
+        $message->setMessage("As senhas não são iguais.", "error", "back");
+    }
 
    } else {
-    
     // Enviar uma mensagem de erro dos dados faltantes
     $message->setMessage("Por favor, preencha todos os campos.", "error", "back");
-
    }
-
 
 } else if ($type === "login") {
 
