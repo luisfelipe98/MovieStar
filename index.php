@@ -21,14 +21,14 @@
     <header>
         <nav id="main-navbar" class="navbar navbar-expand-lg">
             <a href="<?= $BASE_URL ?>" class="navbar-brand">
-                <img src="<?= $BASE_URL ?>img/logo.svg" id="logo" alt="MovieStar">
+                <img src="<?= $BASE_URL ?>img/logo.svg" alt="MovieStar" id="logo">
                 <span id="moviestar-title">MovieStar</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <form action="" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
-                <input type="text" name="q" id="search" class="form-control mr-ms-2" type="search" placeholder="Buscar Filmes" aria-label="Search">
+            <form action="<?= $BASE_URL ?>search.php" method="GET" id="search-form" class="form-inline my-2 my-lg-0">
+                <input type="text" name="q" id="search" class="form-control mr-sm-2" type="search" placeholder="Buscar Filmes" aria-label="Search">
                 <button class="btn my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -46,7 +46,7 @@
         <h1>Corpo do Site</h1>
     </div>
     <footer id="footer">
-        <div class="social-container">
+        <div id="social-container">
             <ul>
                 <li>
                     <a href="#"><i class="fab fa-facebook-square"></i></a>
@@ -59,7 +59,7 @@
                 </li>
             </ul>
         </div>
-        <div id="footer-link-container">
+        <div id="footer-links-container">
             <ul>
                 <li>
                     <a href="#">Adicionar Filme</a>
