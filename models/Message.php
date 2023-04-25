@@ -24,10 +24,22 @@ class Message {
     }
 
     // Pegar uma mensagem no sistema
-    public function getMessage() {}
+    public function getMessage() {
+        if (!empty($_SESSION["msg"])) {
+            return [
+                "msg" => $_SESSION["msg"],
+                "type" => $_SESSION["type"]
+            ];
+        } else {
+            return false;
+        }
+    }
 
     // Limpar a mensagem do sistema
-    public function clearMessage() {}
+    public function clearMessage() {
+        $_SESSION["msg"] = "";
+        $_SESSION["type"] = "";
+    }
 
 }
 
