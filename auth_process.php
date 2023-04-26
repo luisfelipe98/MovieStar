@@ -22,23 +22,30 @@ if ($type === "register") {
    $password = filter_input(INPUT_POST, "password");
    $confirmPassword = filter_input(INPUT_POST, "confirmpassword");
    
-   $user = new User();
-
-   $user->setName($name);
-   $user->setlastName($lastName);
-   $user->setEmail($email);
-   $user->setPassword($password);
-   
    // Verificação de dados mínimos
-   if ($user->getName() && $user->getLastName() && $user->getEmail() && $user->getPassword()) {
+   if ($name && $lastName && $email && $password) {
 
     // Verificar se as senhas batem
-    if ($user->getPassword() === $confirmPassword) {
+    if ($password === $confirmPassword) {
 
         // Verificar se o email já está cadastrado no sistema
         if ($userDAO->findByEmail($user) === false) {
 
-            echo "Nenhum usuário foi encontrado!";
+            $user = new User();
+            
+            // Criação de token e senha
+            $userToken = $user->generateToken();
+            $finalPassword = $user->generatePassword($password);
+
+            $user->setName($name);
+            $user->setlastName($lastName);
+            $user->setEmail($email);
+            $user->setPassword($finalPassword);
+            $user->setToken($userToken);
+
+            $auth = true;
+
+            $userDAO->create($user, $auth);
 
         } else {
             // Enviar uma mensagem de erro que o usuário existente
