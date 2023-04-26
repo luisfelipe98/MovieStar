@@ -10,7 +10,7 @@ interface UserDAOInterface {
     public function authenticateUser($email, $password);
     public function findByEmail($user);
     public function findById(User $user);
-    public function findByToken(User $user);
+    public function findByToken($token);
     public function changePassword(User $user);
     
 }

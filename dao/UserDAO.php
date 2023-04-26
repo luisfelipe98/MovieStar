@@ -22,7 +22,7 @@ class UserDAO implements UserDAOInterface {
         $user->setName($data["name"]);
         $user->setLastName($data["lastname"]);
         $user->setEmail($data["email"]);
-        $user->setPassword($data["pasword"]);
+        $user->setPassword($data["password"]);
         $user->setImage($data["image"]);
         $user->setBio($data["bio"]);
         $user->setToken($data["token"]);
@@ -60,7 +60,27 @@ class UserDAO implements UserDAOInterface {
 
     }
 
+    // Verificar se tem alguém logado ou não
     public function verifyToken($protected = false) {
+
+        if (!empty($_SESSION["token"])) {
+
+            // Pega o token da session
+            $token = $_SESSION["token"];
+
+            $user = $this->findByToken($token);
+
+            if ($user) {
+                return $user;
+            } else {
+                // Redireciona usuário não autenticado
+                $message = new Message($this->url);
+                $message->setMessage("Faça a autenticação para acessar esta página!", "error", "index.php");
+            }
+
+        } else {
+            return false;
+        }
 
     }
 
@@ -72,7 +92,6 @@ class UserDAO implements UserDAOInterface {
         if ($redirect) {
             // Redireciona para o perfil do usuário
             $message = new Message($this->url);
-
             $message->setMessage("Seja bem-vindo!", "success", "editprofile.php");
         }
         
@@ -114,7 +133,32 @@ class UserDAO implements UserDAOInterface {
 
     }
 
-    public function findByToken(User $user) {
+    // Verificar se o token já existe no banco
+    public function findByToken($token) {
+
+        if ($token != "") {
+
+            $query = "SELECT * FROM users WHERE token = :token";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindValue(":token", $token);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) { 
+
+                $data = $stmt->fetch(PDO::FETCH_ASSOC);
+                $newData = $this->buildUser($data);
+
+                return $newData;
+
+            } else { 
+                return false;
+            }
+        } else {
+            return false;
+        }
 
     }
 
