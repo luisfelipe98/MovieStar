@@ -140,9 +140,9 @@ class UserDAO implements UserDAOInterface {
                 $this->setTokenToSession($token, false);
 
                 // Atualizar o token do usuário
-                $user->setToken($token, false);
+                $user->setToken($token);
 
-                $this->update($user);
+                $this->update($user, false);
 
                 return true;
 
