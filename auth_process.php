@@ -64,10 +64,20 @@ if ($type === "register") {
 
 } else if ($type === "login") {
 
+   $email = filter_input(INPUT_POST, "email");
+   $password = filter_input(INPUT_POST, "password");
+
+   // Tenta autenticar o usuário
+   if ($userDAO->authenticateUser($email, $password)) {
+
+   } else {
+        // Enviar uma mensagem de erro que o usuário existente
+        $message->setMessage("Usuário e/ou senha incorretos", "error", "back");  
+
+   }
+
+} else {
+        $message->setMessage("Informações inválidas!", "error", "index.php");
 }
-
-
-
-
 
 ?>
