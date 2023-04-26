@@ -70,8 +70,10 @@ if ($type === "register") {
    // Tenta autenticar o usuário
    if ($userDAO->authenticateUser($email, $password)) {
 
+        $message->setMessage("Seja bem-vindo!", "success", "editprofile.php");
+
    } else {
-        // Enviar uma mensagem de erro que o usuário existente
+        // Enviar uma mensagem de erro
         $message->setMessage("Usuário e/ou senha incorretos", "error", "back");  
 
    }
