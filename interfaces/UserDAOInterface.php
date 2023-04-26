@@ -8,7 +8,7 @@ interface UserDAOInterface {
     public function verifyToken($protected = false);
     public function setTokenToSession($token, $redirect = true);
     public function authenticateUser($email, $password);
-    public function findByEmail(User $user);
+    public function findByEmail($user);
     public function findById(User $user);
     public function findByToken(User $user);
     public function changePassword(User $user);

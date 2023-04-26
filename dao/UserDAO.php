@@ -1,6 +1,7 @@
 <?php
 
 require_once("models/User.php");
+require_once("models/Message.php");
 require_once("interfaces/UserDAOInterface.php");
 
 class UserDAO implements UserDAOInterface {
@@ -32,6 +33,27 @@ class UserDAO implements UserDAOInterface {
 
     public function create(User $user, $authUser = false) {
 
+        $query = "INSERT INTO users (
+                  name, lastname, email, password, token) 
+                  VALUES (
+                  :name, :lastname, :email, :password, :token  
+                  )";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":name", $user->getName());
+        $stmt->bindValue(":lastname", $user->getLastName());
+        $stmt->bindValue(":email", $user->getEmail());
+        $stmt->bindValue(":password", $user->getPassword());
+        $stmt->bindValue(":token", $user->getToken());
+
+        $stmt->execute();
+
+        // Autenticar usuário caso auth seja true
+        if ($authUser) {
+            $this->setTokenToSession($user->getToken());
+        }
+
     }
 
     public function update(User $user) {
@@ -43,6 +65,16 @@ class UserDAO implements UserDAOInterface {
     }
 
     public function setTokenToSession($token, $redirect = true) {
+
+        // Salvar Token na sessão
+        $_SESSION["token"] = $token;
+
+        if ($redirect) {
+            // Redireciona para o perfil do usuário
+            $message = new Message($this->url);
+
+            $message->setMessage("Seja bem-vindo!", "success", "editprofile.php");
+        }
         
     }
 
@@ -50,15 +82,15 @@ class UserDAO implements UserDAOInterface {
 
     }
 
-    public function findByEmail(User $user) {
+    public function findByEmail($user) {
 
-        if ($user->getEmail() != "") {
+        if ($user != "") {
 
             $query = "SELECT * FROM users WHERE email = :email";
 
             $stmt = $this->conn->prepare($query);
 
-            $stmt->bindValue(":email", $user->getEmail());
+            $stmt->bindValue(":email", $user);
 
             $stmt->execute();
 

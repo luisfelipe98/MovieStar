@@ -76,8 +76,8 @@ class User {
     }
 
     public function generateToken() {
-        // Gera uma hash de 50 caracteres e modifica para ficar mais complexas
-        return bind2hex(random_bytes(50));
+        // Gera uma hash de 50 caracteres e modifica para ficar mais complexo
+        return bin2hex(random_bytes(50));
     }
 
     public function generatePassword($password) {
