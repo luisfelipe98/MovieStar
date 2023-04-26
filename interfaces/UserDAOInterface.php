@@ -11,6 +11,7 @@ interface UserDAOInterface {
     public function findByEmail($user);
     public function findById(User $user);
     public function findByToken($token);
+    public function destroyToken();
     public function changePassword(User $user);
     
 }
