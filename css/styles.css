@@ -101,6 +101,7 @@
 }
 
 /* LOGIN / REGISTER */
+
 #auth-row {
   justify-content: space-evenly;
 }
@@ -149,6 +150,50 @@
   background-color: transparent;
   color: #f5c518;
   border-color: #f5c518;
+}
+
+/* EDIT PROFILE */
+
+#profile-image-container {
+  width: 150px;
+  height: 150px;
+  border: 6px solid #f5c518;
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  margin: 15px auto;
+}
+
+.page-description {
+  color: #999;
+}
+
+#bio {
+  max-width: 400px;
+}
+
+.form-control.disabled {
+  background-color: #bbb;
+}
+
+#change-password-container {
+  margin-top: 30px;
+}
+
+.edit-profile-page .card-btn {
+  width: auto;
+}
+
+.edit-profile-page form label {
+  margin-bottom: 10px;
+}
+
+.edit-profile-page form input {
+  margin-bottom: 10px;
+}
+
+.edit-profile-page form input[type="submit"] {
+  margin-top: 20px;
 }
 
 /* FOOTER */

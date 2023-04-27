@@ -14,7 +14,7 @@
     }
 
 ?>
-    <div id="main-container" class="container-fluid">
+    <div id="main-container" class="container-fluid edit-profile-page">
         <div class="col-md-12">
             <form action="<?= $BASE_URL ?>user_process.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="type" value="update">
@@ -34,7 +34,7 @@
                             <label for="email">E-mail:</label>
                             <input type="text" readonly class="form-control disabled" id="email" name="email" value="<?= $userData->getEmail() ?>">
                         </div>
-                        <input type="submit" class="form-btn" value="Alterar">
+                        <input type="submit" class="form-control card-btn" value="Alterar">
                     </div>
                     <div class="col-md-4">
                         <div id="profile-image-container" style="background-image: url('<?= $BASE_URL ?>img/users/<?= $userData->getImage() ?>')"></div>
@@ -52,7 +52,7 @@
             <div class="row" id="change-password-container"> 
                 <div class="col-md-4">
                     <h2>Alterar a senha</h2>
-                    <p class="page-description">Digite a nova senha e confirme para alterar a senha</p>
+                    <p class="page-description">Digite a nova senha e confirme para alterar a senha:</p>
                     <form action="<?= $BASE_URL ?>user_process.php" method="POST">
                         <input type="hidden" name="type" value="changepassword">
                         <div class="form-group">
@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label for="confirmpassword">Confirmar senha:</label>
                             <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirme sua nova senha">
-                            <input type="submit" class="form-btn" value="Alterar Senha">
+                            <input type="submit" class="form-control card-btn" value="Alterar Senha">
                         </div>   
                     </form>
                 </div>
