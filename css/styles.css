@@ -116,7 +116,6 @@
 
 #login-container form,
 #register-container form {
-  position: relative;
   max-width: 400px;
   margin: 30px auto;
 }
@@ -132,13 +131,11 @@
 }
 
 #login-container form input[type="submit"] {
-  position: absolute;
-  top: 170px;
+  margin-top: 20px;
 }
 
 #register-container form input[type="submit"] {
-  position: absolute;
-  top: 420px;
+  margin-top: 20px;
 }
 
 .card-btn {

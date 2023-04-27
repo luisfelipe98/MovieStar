@@ -75,6 +75,10 @@ class User {
         return $this->token;
     }
 
+    public function getFullName($user) {
+        return $user->getName() . " " . $user->getLastName();
+    }
+    
     public function generateToken() {
         // Gera uma hash de 50 caracteres e modifica para ficar mais complexo
         return bin2hex(random_bytes(50));
