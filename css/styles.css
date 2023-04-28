@@ -196,6 +196,25 @@
   margin-top: 20px;
 }
 
+/* NEW MOVIE */
+
+.new-movie-container form label {
+  margin-bottom: 10px;
+}
+
+.new-movie-container form select {
+  margin-bottom: 10px;
+  appearance: auto;
+}
+
+.new-movie-container form input {
+  margin-bottom: 10px;
+}
+
+.new-movie-container form input[type="submit"] {
+  margin-top: 20px;
+}
+
 /* FOOTER */
 
 #footer {
