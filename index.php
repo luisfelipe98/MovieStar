@@ -15,8 +15,8 @@
                     <h5 class="card-title">
                         <a href="">Título do Filme</a>
                     </h5>
-                    <a href="#" class="btn-primary rate-btn">Avaliar</a>
-                    <a href="#" class="btn-primary card-btn">Conhecer</a>
+                    <a href="#" class="form-control btn-primary rate-btn">Avaliar</a>
+                    <a href="#" class="form-control btn-primary card-btn">Conhecer</a>
                 </div>
             </div>
         </div>
