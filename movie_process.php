@@ -39,6 +39,7 @@ if ($type === "create") {
         $movie->setCategory($category);
         $movie->setTrailer($trailer);
         $movie->setDescription($description);
+        $movie->setUsersId($userData->getId());
 
         // Upload de imagem
         if (isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
