@@ -133,6 +133,10 @@
   background-position: center;
 }
 
+.card-body a {
+  text-decoration: none;
+}
+
 .card-title {
   height: 3rem;
 }
