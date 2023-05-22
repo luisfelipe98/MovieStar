@@ -13,7 +13,7 @@ $userData = $userDAO->verifyToken(true);
     <p class="section-description">Adicione ou atualize as informações dos filmes que você enviou</p>
     <div class="col-md-12" id="add-movie-container">
         <a href="<?= $BASE_URL ?>newmovie.php" class="form-control card-btn">
-            <i class="fas fa-plus"></i>Adicionar Filme
+            <i class="fas fa-plus"></i> Adicionar Filme
         </a>
     </div>
     <div class="col-md-12" id="movies-dashboard">
@@ -27,7 +27,7 @@ $userData = $userDAO->verifyToken(true);
             <tbody>
                 <tr>
                     <td scope="row">1</td>
-                    <td><a href="#" class="table-movie-title">Título</a></td>
+                    <td><a href="#" class="table-movie-title bold">Título</a></td>
                     <td><i class="fas fa-star"></i>9</td>
                     <td class="actions-column">
                         <a href="" class="edit-btn">
