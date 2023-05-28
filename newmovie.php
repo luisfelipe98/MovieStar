@@ -2,10 +2,16 @@
     
     require_once("templates/header.php");
     require_once("dao/UserDAO.php");
+    require_once("dao/CategoryDAO.php");
     require_once("models/User.php");
+    require_once("models/Category.php");
 
     $userDAO = new UserDAO($conn, $BASE_URL);
     $userData = $userDAO->verifyToken(true);
+
+    $categoryDAO = new CategoryDAO($conn, $BASE_URL);
+    $categoryData = $categoryDAO->showAll();
+
 ?>
     <div id="main-container" class="container-fluid">
         <div class="offset-md-4 col-md-4 new-movie-container">
@@ -29,10 +35,9 @@
                     <label for="category">Categoria:</label>
                     <select name="category" id="category" class="form-control">
                         <option value="">Selecione</option>
-                        <option value="action">Ação</option>
-                        <option value="drama">Drama</option>
-                        <option value="comedy">Comédia</option>
-                        <option value="sci-fi">Ficção Científica</option>
+                        <?php foreach($categoryData as $category): ?>
+                            <option value="<?= $category->getCategory() ?>"><?= $category->getCategory() ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group">

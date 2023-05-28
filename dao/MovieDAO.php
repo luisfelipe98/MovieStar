@@ -61,7 +61,7 @@ class MovieDAO implements MovieDAOInterface {
 
         $movies = [];
 
-        $query = "SELECT * FROM movies WHERE category = :category ORDER BY id DESC";
+        $query = "SELECT * FROM movies WHERE category_id = :category ORDER BY id DESC";
 
         $stmt = $this->conn->prepare($query);
 
@@ -110,9 +110,9 @@ class MovieDAO implements MovieDAOInterface {
 
     public function create(Movie $movie) {
         $query = "INSERT INTO movies (
-                  title, description, image, trailer, category, length, users_id  
+                  title, description, image, trailer, category_id, length, users_id  
                   ) VALUES (
-                  :title, :description, :image, :trailer, :category, :length, :users_id  
+                  :title, :description, :image, :trailer, :category_id, :length, :users_id  
                   )";
 
         $stmt = $this->conn->prepare($query);
@@ -121,7 +121,7 @@ class MovieDAO implements MovieDAOInterface {
         $stmt->bindValue(":description", $movie->getDescription());
         $stmt->bindValue(":image", $movie->getImage());
         $stmt->bindValue(":trailer", $movie->getTrailer());
-        $stmt->bindValue(":category", $movie->getCategory());
+        $stmt->bindValue(":category_id", $movie->getCategoryId());
         $stmt->bindValue(":length", $movie->getLength());
         $stmt->bindValue(":users_id", $movie->getUsersId());
 

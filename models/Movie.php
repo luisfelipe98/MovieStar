@@ -7,9 +7,9 @@ class Movie {
     private $description;
     private $image;
     private $trailer;
-    private $category;
     private $length;
     private $users_id;
+    private $categories_id;
 
     public function setId($id) {
         $this->id = $id;
@@ -51,14 +51,6 @@ class Movie {
         return $this->trailer;    
     }
 
-    public function setCategory($category) {
-        $this->category = $category;
-    }
-
-    public function getCategory() {
-        return $this->category;    
-    }
-
     public function setLength($length) {
         $this->length = $length;
     }
@@ -73,6 +65,14 @@ class Movie {
 
     public function getUsersId() {
         return $this->users_id;    
+    }
+
+    public function setCategoriesId($categories_id) {
+        $this->categories_id = $categories_id;
+    }
+
+    public function getCategoriesId() {
+        return $this->categories_id;    
     }
 
     public function generateImageName() {

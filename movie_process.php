@@ -4,6 +4,7 @@ require_once("models/Movie.php");
 require_once("models/Message.php");
 require_once("dao/UserDAO.php");
 require_once("dao/MovieDAO.php");
+require_once("dao/CategoryDAO.php");
 require_once("globals.php");
 require_once("db.php");
 
@@ -12,6 +13,8 @@ $message = new Message($BASE_URL);
 $userDAO = new UserDAO($conn, $BASE_URL);
 
 $movieDAO = new MovieDAO($conn, $BASE_URL);
+
+$categoryDAO = new CategoryDAO($CONN, $BASE_URL);
 
 // Resgata o tipo de formulário
 $type = filter_input(INPUT_POST, "type");
@@ -31,15 +34,17 @@ if ($type === "create") {
 
     // Validação mínima de dados
     if (!empty($title) && !empty($length) && !empty($category) && !empty($trailer) && !empty($description)) {
+        
+        $categoryId = $categoryDAO->getCategoryId($category);
 
         $movie = new Movie();
 
         $movie->setTitle($title);
         $movie->setLength($length);
-        $movie->setCategory($category);
         $movie->setTrailer($trailer);
         $movie->setDescription($description);
         $movie->setUsersId($userData->getId());
+        $movie->setCategoriesId($categoryId);
 
         // Upload de imagem
         if (isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
