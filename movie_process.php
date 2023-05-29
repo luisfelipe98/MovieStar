@@ -14,8 +14,6 @@ $userDAO = new UserDAO($conn, $BASE_URL);
 
 $movieDAO = new MovieDAO($conn, $BASE_URL);
 
-$categoryDAO = new CategoryDAO($CONN, $BASE_URL);
-
 // Resgata o tipo de formulário
 $type = filter_input(INPUT_POST, "type");
 
@@ -35,8 +33,6 @@ if ($type === "create") {
     // Validação mínima de dados
     if (!empty($title) && !empty($length) && !empty($category) && !empty($trailer) && !empty($description)) {
         
-        $categoryId = $categoryDAO->getCategoryId($category);
-
         $movie = new Movie();
 
         $movie->setTitle($title);
@@ -44,7 +40,7 @@ if ($type === "create") {
         $movie->setTrailer($trailer);
         $movie->setDescription($description);
         $movie->setUsersId($userData->getId());
-        $movie->setCategoriesId($categoryId);
+        $movie->setCategoriesId($category);
 
         // Upload de imagem
         if (isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {

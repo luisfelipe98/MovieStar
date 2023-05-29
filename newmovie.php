@@ -36,7 +36,7 @@
                     <select name="category" id="category" class="form-control">
                         <option value="">Selecione</option>
                         <?php foreach($categoryData as $category): ?>
-                            <option value="<?= $category->getCategory() ?>"><?= $category->getCategory() ?></option>
+                            <option value="<?= $category->getId() ?>"><?= $category->getCategory() ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

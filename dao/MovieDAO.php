@@ -25,7 +25,7 @@ class MovieDAO implements MovieDAOInterface {
         $movie->setDescription($data["description"]);
         $movie->setImage($data["image"]);
         $movie->setTrailer($data["trailer"]);
-        $movie->setCategory($data["category"]);
+        $movie->setCategoriesId($data["category_id"]);
         $movie->setLength($data["length"]);
         $movie->setUsersId($data["users_id"]);
 
@@ -121,7 +121,7 @@ class MovieDAO implements MovieDAOInterface {
         $stmt->bindValue(":description", $movie->getDescription());
         $stmt->bindValue(":image", $movie->getImage());
         $stmt->bindValue(":trailer", $movie->getTrailer());
-        $stmt->bindValue(":category_id", $movie->getCategoryId());
+        $stmt->bindValue(":category_id", $movie->getCategoriesId());
         $stmt->bindValue(":length", $movie->getLength());
         $stmt->bindValue(":users_id", $movie->getUsersId());
 
