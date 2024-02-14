@@ -105,7 +105,33 @@ class MovieDAO implements MovieDAOInterface {
         return $movies;
     }
 
-    public function findById($id) {}
+    public function findById($id) {
+
+        $movie = [];
+
+        $query = "SELECT * FROM movies WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":id", $id);
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+
+            $movieData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $movie = $this->buildMovie($movieData);
+
+            return $movie;
+
+        } else {
+
+            return false;
+
+        }
+    }
+
     public function findByTitle($title) {}
 
     public function create(Movie $movie) {
