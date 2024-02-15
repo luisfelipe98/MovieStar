@@ -73,6 +73,7 @@
             <h3 id="reviews-title">Avaliações</h3>
             <!-- Verifica se habilita a review para o usuário ou não -->
             <div class="col-md-12" id="review-form-container">
+                <h4>Envie sua avaliação</h4>
                 <p class="page-description">Preencha o formulário com a nota e comentário sobre o filme</p>
                 <form action="<?= $BASE_URL ?>review_process.php" id="review-form" method="POST">
                     <input type="hidden" name="type" value="create">
@@ -90,32 +91,30 @@
                         <label for="review">Comentário:</label>
                         <textarea name="review" id="review" rows="3" class="form-control" placeholder="O que você achou do filme?"></textarea>
                     </div>
-                    <input type="submit" class="form-control card-btn" value="Enviar">
+                    <input type="submit" class="form-control card-btn comment-btn" value="Enviar">
                 </form>
-                <!-- Base dos Comentários -->
-                <div class="col-md-12 review">
-                    <div class="row">
-                        <div class="col-md-1">
-                            <div class="profile-image-container review-image" style="background-image: url('<?= $BASE_URL ?>img/users/user.png')"></div>
-                            <div class="col-md-9 author-details-contaier">
-                                <h4 class="author-name">
-                                    <a href="#">Luis</a>
-                                </h4>
-                                <p><i class="fas fa-star"></i> 5</p>
-                            </div>
-                            <div class="col-md-12">
-                                <p class="comment-title">Comentário:</p>
-                                <p>Este é o comentário do usuário</p>
-                            </div>
-                        </div>
+            </div>
+            <!-- Base dos Comentários -->
+            <div class="col-md-12 review">
+                <div class="row">
+                    <div class="col-md-1">
+                        <div class="profile-image-container review-image" style="background-image: url('<?= $BASE_URL ?>img/users/user.png')"></div>
+                    </div>
+                    <div class="col-md-9 author-details-container">
+                        <h4 class="author-name">
+                            <a href="#">Luis</a>
+                        </h4>
+                        <p><i class="fas fa-star"></i> 5</p>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="comment-title">Comentário:</p>
+                        <p>Este é o comentário do usuário</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <?php
 require_once("templates/footer.php");
 ?>
