@@ -69,6 +69,27 @@ class CategoryDAO implements CategoryDAOInterface {
 
     }
 
+    public function getCategoryNameById($id) {
+
+        $categoryName;
+
+        $query = "SELECT category FROM categories WHERE id = :id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":id", $id);
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() == 1) {
+            $results= $stmt->fetch(PDO::FETCH_ASSOC);
+            $categoryName = $results["category"];
+        }
+
+        return $categoryName;
+        
+    }
+
 }
 
 ?>
