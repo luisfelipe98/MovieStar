@@ -11,6 +11,8 @@ $userData = $userDAO->verifyToken(true);
 $movieDAO = new MovieDAO($conn, $BASE_URL);
 $userMovies = $movieDAO->getMoviesByUsersId($userData);
 
+$cont = 1;
+
 ?>
 <div id="main-container" class="container-fluid">
     <h2 class="section-title">Dashboard</h2>
@@ -31,7 +33,7 @@ $userMovies = $movieDAO->getMoviesByUsersId($userData);
             <tbody>
                 <?php foreach($userMovies as $movie): ?>
                     <tr>
-                        <td scope="row"><?= $movie->getId() ?></td>
+                        <td scope="row"><?= $cont++ ?></td>
                         <td><a href="<?= $BASE_URL ?>movie.php?id=<?= $movie->getId() ?>" class="table-movie-title bold"><?= $movie->getTitle() ?></a></td>
                         <td><i class="fas fa-star"></i> 9</td>
                         <td class="actions-column">
