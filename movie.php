@@ -44,6 +44,7 @@
     }
    
     // Resgatar as reviews do filme
+    $alreadyReviewed = false;
 
 ?>
 <div id="main-container" class="container-fluid">
@@ -72,28 +73,30 @@
         <div class="offset-md-1 col-md-10" id="reviews-container">
             <h3 id="reviews-title">Avaliações</h3>
             <!-- Verifica se habilita a review para o usuário ou não -->
-            <div class="col-md-12" id="review-form-container">
-                <h4>Envie sua avaliação</h4>
-                <p class="page-description">Preencha o formulário com a nota e comentário sobre o filme</p>
-                <form action="<?= $BASE_URL ?>review_process.php" id="review-form" method="POST">
-                    <input type="hidden" name="type" value="create">
-                    <input type="hidden" name="movies_id" value="<?= $movie->getId() ?>">
-                    <div class="form-group">
-                        <label for="rating">Nota do Filme</label>
-                        <select name="rating" id="rating" class="form-control">
-                            <option value="">Selecione</option>
-                            <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                <option value="<?= $i ?>"><?= $i ?></option>
-                            <?php endfor; ?>   
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="review">Comentário:</label>
-                        <textarea name="review" id="review" rows="3" class="form-control" placeholder="O que você achou do filme?"></textarea>
-                    </div>
-                    <input type="submit" class="form-control card-btn comment-btn" value="Enviar">
-                </form>
-            </div>
+            <?php if(!empty($userData) && !empty($userOwnMovie) && !empty($alreadyReviewed)): ?>
+                <div class="col-md-12" id="review-form-container">
+                    <h4>Envie sua avaliação</h4>
+                    <p class="page-description">Preencha o formulário com a nota e comentário sobre o filme</p>
+                    <form action="<?= $BASE_URL ?>review_process.php" id="review-form" method="POST">
+                        <input type="hidden" name="type" value="create">
+                        <input type="hidden" name="movies_id" value="<?= $movie->getId() ?>">
+                        <div class="form-group">
+                            <label for="rating">Nota do Filme</label>
+                            <select name="rating" id="rating" class="form-control">
+                                <option value="">Selecione</option>
+                                <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                    <option value="<?= $i ?>"><?= $i ?></option>
+                                <?php endfor; ?>   
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="review">Comentário:</label>
+                            <textarea name="review" id="review" rows="3" class="form-control" placeholder="O que você achou do filme?"></textarea>
+                        </div>
+                        <input type="submit" class="form-control card-btn comment-btn" value="Enviar">
+                    </form>
+                </div>
+            <?php endif; ?>
             <!-- Base dos Comentários -->
             <div class="col-md-12 review">
                 <div class="row">
