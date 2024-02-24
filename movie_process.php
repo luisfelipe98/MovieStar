@@ -78,6 +78,26 @@ if ($type === "create") {
         $message->setMessage("Preencha os campos!", "error", "back");
     }
 
+} else if ($type === "delete") {
+
+  // Receber os dados do formulário
+  $id = filter_input(INPUT_POST, "id");
+  
+  $movie = $movieDAO->findById($id);
+  
+  if ($movie) {
+    // Checar se o usuário é dono do filme
+    if ($movie->getUsersId() === $userData->getId()) {
+
+        $movieDAO->destroy($movie->getId());
+
+    } else {
+        $message->setMessage("Informações inválidas!", "error", "index.php");
+    }
+  } else {
+    $message->setMessage("Informações inválidas!", "error", "index.php");
+  }
+
 } else {
     $message->setMessage("Informações inválidas!", "error", "index.php");
 }
