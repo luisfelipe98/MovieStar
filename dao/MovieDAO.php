@@ -151,13 +151,50 @@ class MovieDAO implements MovieDAOInterface {
         $stmt->bindValue(":length", $movie->getLength());
         $stmt->bindValue(":users_id", $movie->getUsersId());
 
-        $stmt->execute();
+        $bool = $stmt->execute();
 
         $message = new Message($this->url);
-        $message->setMessage("Filme adicionado com sucesso!", "success", "index.php");
+
+        if ($bool) {
+            $message->setMessage("Filme adicionado com sucesso!", "success", "dashboard.php");    
+        } else {
+            $message->setMessage("Erro ao adicionar o filme", "error", "dashboard.php");
+        }
     }
 
-    public function update(Movie $movie) {}
+    public function update(Movie $movie) {
+        $query = "UPDATE movies SET
+                    title = :title,
+                    description = :description,
+                    image = :image,
+                    trailer = :trailer,
+                    length = :length,
+                    category_id = :category_id
+                    WHERE id = :id    
+        ";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":title", $movie->getTitle());
+        $stmt->bindValue(":description", $movie->getDescription());
+        $stmt->bindValue(":image", $movie->getImage());
+        $stmt->bindValue(":trailer", $movie->getTrailer());
+        $stmt->bindValue(":length", $movie->getLength());
+        $stmt->bindValue(":category_id", $movie->getCategoriesId());
+        $stmt->bindValue(":id", $movie->getId());
+
+        $bool = $stmt->execute();
+
+        $message = new Message($this->url);
+
+        if ($bool) {
+            $message->setMessage("Filme atualizado com sucesso!", "success", "dashboard.php");    
+        } else {
+            $message->setMessage("Erro ao atualizar o filme", "error", "dashboard.php");
+        }
+        
+    }
+    
     public function destroy($id) {
 
         $query = "DELETE FROM movies WHERE id = :id";
@@ -166,11 +203,15 @@ class MovieDAO implements MovieDAOInterface {
 
         $stmt->bindValue(":id", $id);
 
-        $stmt->execute();
+        $bool = $stmt->execute();
 
         $message = new Message($this->url);
-        $message->setMessage("Filme removido com sucesso!", "success", "dashboard.php");
 
+        if ($bool) {
+            $message->setMessage("Filme removido com sucesso!", "success", "dashboard.php");    
+        } else {
+            $message->setMessage("Erro ao remover o filme", "error", "dashboard.php");
+        }
 
     }
 
