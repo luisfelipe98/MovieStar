@@ -388,6 +388,16 @@
   width: 15%;
 }
 
+/* EDIT MOVIE*/
+#edit-movie-form label,
+#edit-movie-form input {
+  margin-bottom: 10px;
+}
+
+.edit-movie-btn {
+  width: 30%;
+}
+
 /* DASHBOARD */
 
 #add-movie-container a {
