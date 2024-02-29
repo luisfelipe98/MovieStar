@@ -184,7 +184,7 @@ class UserDAO implements UserDAOInterface {
 
     }
 
-    public function findById(User $user) {
+    public function findById($userId) {
 
     }
 

@@ -9,7 +9,7 @@ $userDAO = new UserDAO($conn, $BASE_URL);
 $userData = $userDAO->verifyToken(true);
 
 $movieDAO = new MovieDAO($conn, $BASE_URL);
-$userMovies = $movieDAO->getMoviesByUsersId($userData);
+$userMovies = $movieDAO->getMoviesByUserId($userData);
 
 $cont = 1;
 

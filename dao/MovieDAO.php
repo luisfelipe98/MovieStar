@@ -81,7 +81,7 @@ class MovieDAO implements MovieDAOInterface {
         return $movies;
     }
 
-    public function getMoviesByUsersId(User $user) {
+    public function getMoviesByUserId(User $user) {
 
         $movies = [];
 
