@@ -48,9 +48,9 @@
 <div id="main-container" class="container-fluid">
     <div class="col-md-8 offset-md-2">
         <div class="row profile-container">
-            <div class="col-md-12">
+            <div class="col-md-12 about-container">
                 <h1 class="page-title"><?= $fullName ?></h1>
-                <div id="profile-image-container" style="background-image: url('<?= $BASE_URL ?>img/users/<?= $userData->getImage() ?>')"></div>
+                <div id="profile-image-container" class="profile-image" style="background-image: url('<?= $BASE_URL ?>img/users/<?= $userData->getImage() ?>')"></div>
                 <h3 class="about-title">Sobre:</h3>
                 <?php if(!empty($userData->getBio())): ?>
                     <p class="profile-description"><?= $userData->getBio() ?></p>
@@ -58,26 +58,23 @@
                     <p class="profile-description">O usuário não escreveu nada aqui...</p>
                 <?php endif; ?>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-12 added-movies-container">
-                    <h3>Filmes que enviou:</h3>
-                    <?php if (count($userMovies) === 0): ?>
-                        <p class="empty-list">O usuário não adicionou filmes ainda...</p>
-                    <?php else: ?>
-                        <?php foreach($userMovies as $movie): ?>
-                            <?php require("templates/moviecard.php"); ?>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+            <div class="col-md-12 added-movies-container">
+                <div class="col-md-12">
+                    <h3 class="movies-header">Filmes que enviou:</h3>
+                    <div class="movies-container">
+                        <?php if (count($userMovies) === 0): ?>
+                            <p class="empty-list">O usuário não adicionou filmes ainda...</p>
+                        <?php else: ?>
+                            <?php foreach($userMovies as $movie): ?>
+                                <?php require("templates/moviecard.php"); ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
 <?php 
     require_once("templates/footer.php");
 ?>
