@@ -186,6 +186,31 @@ class UserDAO implements UserDAOInterface {
 
     public function findById($userId) {
 
+        if ($userId != "") {
+
+            $query = "SELECT * FROM users WHERE id = :userId";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindValue(":userId", $userId);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() > 0) {
+
+                $data = $stmt->fetch(PDO::FETCH_ASSOC);
+                $user = $this->buildUser($data);
+
+                return $user;
+
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+
     }
 
     // Verificar se o token já existe no banco

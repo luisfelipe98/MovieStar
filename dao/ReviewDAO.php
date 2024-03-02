@@ -3,6 +3,7 @@
 require_once("models/Review.php");
 require_once("models/Message.php");
 require_once("interfaces/ReviewDAOInterface.php");
+require_once("dao/UserDAO.php");
 
 class ReviewDAO implements ReviewDAOInterface {
 
@@ -55,7 +56,44 @@ class ReviewDAO implements ReviewDAOInterface {
 
     }
 
-    public function getMovieReviews($id) {}
+    public function getMovieReviews($id) {
+
+        $query = "SELECT * FROM reviews WHERE movie_id = :id";
+
+        $reviews = [];
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindValue(":id", $id);
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+
+            $allReviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $userDAO = new UserDAO($this->conn, $this->url);
+
+            foreach ($allReviews as $review) {
+
+                $reviewsObject = $this->buildReview($review);
+
+                // Chamar dados do usuário
+                $userInfo = $userDAO->findById($reviewsObject->getUserId());
+
+                // Criando uma nova propriedade no objeto do review
+                $reviewsObject->userInfo = $userInfo;
+
+                $reviews[] = $reviewsObject;
+
+            }
+
+        } 
+
+        return $reviews;
+
+    }
+
     public function hasAlreadyReviewed($id, $userId) {}
     public function getRatings($id) {}
 }
