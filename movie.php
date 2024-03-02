@@ -24,7 +24,6 @@
         $movie = $movieDAO->findById($id);
 
         // Verifica se o filme existe
-
         if (!$movie) {
             $message->setMessage("O filme não foi encontrado!", "error", "index.php");
         }
@@ -44,13 +43,14 @@
         if ($userData->getId() === $movie->getUsersId()) {
             $userOwnMovie = true;
         }
+
+        // Ver se o usuário já fez a review do filme
+        $alreadyReviewed = $reviewDAO->hasAlreadyReviewed($movie->getId(), $userData->getId());
+
     }
    
     // Resgatar as reviews do filme
     $movieReviews = $reviewDAO->getMovieReviews($id);
-
-    // Resgatar as reviews do filme
-    $alreadyReviewed = false;
 
 ?>
 <div id="main-container" class="container-fluid">
