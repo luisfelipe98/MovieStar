@@ -88,12 +88,19 @@
                         <input type="hidden" name="movie_id" value="<?= $movie->getId() ?>">
                         <div class="form-group">
                             <label for="rating">Nota do Filme</label>
-                            <select name="rating" id="rating" class="form-control">
-                                <option value="">Selecione</option>
-                                <?php for ($i = 1; $i <= 5; $i++) : ?>
-                                    <option value="<?= $i ?>"><?= $i ?></option>
-                                <?php endfor; ?>   
-                            </select>
+                            <div class="stars">
+                                <input type="radio" id="vazio" name="rating" value="" checked />
+                                <label for="star_one"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star_one" name="rating" value="1" />
+                                <label for="star_two"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star_two" name="rating" value="2" />
+                                <label for="star_three"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star_three" name="rating" value="3" />
+                                <label for="star_four"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star_four" name="rating" value="4" />
+                                <label for="star_five"><i class="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star_five" name="rating" value="5" />
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="review">Comentário:</label>

@@ -393,6 +393,7 @@
 #review-form-container {
   background-color: #333;
   padding: 20px;
+  margin-bottom: 25px;
 }
 
 #review-form-container select,
@@ -435,7 +436,28 @@
   width: 15%;
 }
 
+.comment-btn:hover {
+  background-color: #000;
+}
+
+/* STARS FROM REVIEW*/
+
+.stars input[type="radio"] {
+  display: none;
+}
+
+.stars label i.fa-star::before {
+  content: "\f005";
+  color: #f5c518;
+  font-size: 25px;
+}
+
+.stars input[type="radio"]:checked ~ label i.fa-star::before {
+  color: #ccc;
+}
+
 /* EDIT MOVIE*/
+
 #edit-movie-form label,
 #edit-movie-form input {
   margin-bottom: 10px;
