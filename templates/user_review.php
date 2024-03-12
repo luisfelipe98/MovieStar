@@ -13,7 +13,7 @@ if ($review->userInfo->getImage() == "") {
 }
 
 ?>
-<div class="col-md-12 review">
+<div class="offset-md-1 col-md-10 review">
     <div class="row">
         <div class="col-md-1">
             <div class="profile-image-container review-image" style="background-image: url('<?= $BASE_URL ?>img/users/<?= $review->userInfo->getImage() ?>')"></div>

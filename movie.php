@@ -76,48 +76,13 @@
         <div class="col-md-4">
             <div class="movie-image-container" style="background-image: url('<?= $BASE_URL ?>/img/movies/<?= $movie->getImage() ?> ')"> </div>
         </div>
-        <div class="offset-md-1 col-md-10" id="reviews-container">
-            <h3 id="reviews-title">Avaliações</h3>
-            <!-- Verifica se habilita a review para o usuário ou não -->
-            <?php if(!empty($userData) && !$userOwnMovie && !$alreadyReviewed): ?>
-                <div class="col-md-12" id="review-form-container">
-                    <h4>Envie sua avaliação</h4>
-                    <p class="page-description">Preencha o formulário com a nota e comentário sobre o filme</p>
-                    <form action="<?= $BASE_URL ?>review_process.php" id="review-form" method="POST">
-                        <input type="hidden" name="type" value="create">
-                        <input type="hidden" name="movie_id" value="<?= $movie->getId() ?>">
-                        <div class="form-group">
-                            <label for="rating">Nota do Filme</label>
-                            <div class="stars">
-                                <input type="radio" id="vazio" name="rating" value="" checked />
-                                <label for="star_one"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star_one" name="rating" value="1" />
-                                <label for="star_two"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star_two" name="rating" value="2" />
-                                <label for="star_three"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star_three" name="rating" value="3" />
-                                <label for="star_four"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star_four" name="rating" value="4" />
-                                <label for="star_five"><i class="fa-solid fa-star"></i></label>
-                                <input type="radio" id="star_five" name="rating" value="5" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="review">Comentário:</label>
-                            <textarea name="review" id="review" rows="3" class="form-control" placeholder="O que você achou do filme?"></textarea>
-                        </div>
-                        <input type="submit" class="form-control card-btn comment-btn" value="Enviar">
-                    </form>
-                </div>
-            <?php endif; ?>
-            <?php if (count($movieReviews) == 0): ?>
-                <p class="empty-list">Não há comentários para este filme ainda...</p>
-            <?php else: ?>
-                <?php foreach($movieReviews as $review): ?>
-                    <?php require("templates/user_review.php"); ?>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
+        <?php if (count($movieReviews) == 0): ?>
+            <p class="empty-list">Não há comentários para este filme ainda...</p>
+        <?php else: ?>
+            <?php foreach($movieReviews as $review): ?>
+                <?php require("templates/user_review.php"); ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </div>
 <?php

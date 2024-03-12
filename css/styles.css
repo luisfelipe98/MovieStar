@@ -373,7 +373,8 @@
 
 /* MOVIE DETAILS */
 
-.movie-container {
+.movie-container,
+.review-container {
   text-align: center;
 }
 
@@ -409,6 +410,7 @@
 
 .review {
   padding: 20px 0;
+  padding-left: 15px;
   border-bottom: 1px solid #333;
 }
 
@@ -432,12 +434,20 @@
   appearance: auto;
 }
 
-.comment-btn {
-  width: 15%;
+/* REVIEW*/
+
+#review-form {
+  text-align: left;
 }
 
-.comment-btn:hover {
-  background-color: #000;
+#review-form label,
+#review-form select,
+#review-form textarea {
+  margin-bottom: 15px;
+}
+
+.comment-btn {
+  width: 25%;
 }
 
 /* STARS FROM REVIEW*/
