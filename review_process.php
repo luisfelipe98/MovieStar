@@ -20,6 +20,12 @@ $reviewDAO = new ReviewDAO($conn, $BASE_URL);
 // Resgatar dados do usuário
 $userData = $userDAO->verifyToken();
 
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+
+die();
+
 // Recebendo o tipo do formulário
 $type = filter_input(INPUT_POST, "type");
 

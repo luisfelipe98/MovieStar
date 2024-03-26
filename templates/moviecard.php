@@ -13,7 +13,7 @@
         <h5 class="card-title">
             <a href="<?= $BASE_URL ?>movie.php?id=<?= $movie->getId() ?>"><?= $movie->getTitle() ?></a>
         </h5>
-        <a href="<?= $BASE_URL ?>movie.php?id=<?= $movie->getId() ?>" class="form-control btn-primary rate-btn">Avaliar</a>
+        <a href="<?= $BASE_URL ?>newreview.php?id=<?= $movie->getId() ?>" class="form-control btn-primary rate-btn">Avaliar</a>       
         <a href="<?= $BASE_URL ?>movie.php?id=<?= $movie->getId() ?>" class="form-control btn-primary card-btn">Conhecer</a>
     </div>
 </div>

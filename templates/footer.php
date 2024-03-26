@@ -15,10 +15,10 @@
         <div id="footer-links-container">
             <ul>
                 <li>
-                    <a href="#">Adicionar Filme</a>
+                    <a href="newmovie.php">Adicionar Filme</a>
                 </li>
                 <li>
-                    <a href="#">Adicionar Critica</a>
+                    <a href="newreview.php">Adicionar Critica</a>
                 </li>
                 <li>
                     <a href="#">Entrar / Cadastrar</a>

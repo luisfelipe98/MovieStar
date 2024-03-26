@@ -2,11 +2,71 @@
     
     require_once("templates/header.php");
     require_once("dao/UserDAO.php");
+    require_once("dao/MovieDAO.php");
+    require_once("dao/ReviewDAO.php");
     require_once("models/User.php");
+    require_once("models/Message.php");
 
     $userDAO = new UserDAO($conn, $BASE_URL);
     $userData = $userDAO->verifyToken(true);
 
+    $message = new Message($BASE_URL);
+
+    $movieDAO = new MovieDAO($conn, $BASE_URL);
+
+    $reviewDAO = new ReviewDAO($conn, $BASE_URL);
+
+    $movieId = filter_input(INPUT_GET, "id");
+
+    $allMovies = $movieDAO->findAll();
+
+    if ($movieId === NULL) {
+
+        // Verifica se ele é dono de algum filme
+        $userMovies = $movieDAO->getMoviesByUserId($userData);
+
+        $vetor = [];
+
+        for ($i = 0; $i < count($allMovies); $i++) {
+            for ($j = 0; $j < count($userMovies); $j++) {
+                if ($allMovies[$i]->getId() === $userMovies[$j]->getId()) {
+                    $vetor[] = $i;
+                }
+            }
+        }
+
+        // Verifica se ele comentou algum filme
+        $userReviews = $reviewDAO->getUserReviews($userData->getId());
+
+        for ($i = 0; $i < count($allMovies); $i++) {
+            for ($j = 0; $j < count($userReviews); $j++) {
+                if ($allMovies[$i]->getId() === $userReviews[$j]->getMovieId()) {
+                    $vetor[] = $i;
+                }
+            }
+        }
+
+        // Tirando os filmes que o usuário é dono e já comentou
+        for ($i = 0; $i < count($vetor); $i++) {
+            unset($allMovies[$vetor[$i]]);
+        }
+
+    } else if ($movieId === 0) {
+
+        $message->setMessage("Filme não encontrado!", "error", "index.php");
+
+    } else {
+
+        $movie = $movieDAO->findById($movieId);
+
+        if ($movie === false) {
+            $message->setMessage("Filme não encontrado!", "error", "index.php");
+        } else {
+            $allMovies[] = $movie;
+        }
+
+    }
+  
 ?>
     <div id="main-container" class="container-fluid">
         <div class="offset-md-4 col-md-4 review-container">
@@ -16,8 +76,10 @@
                 <input type="hidden" name="type" value="create">
                 <div class="form-group">
                     <label for="movie">Filme</label>
-                    <select class="form-control">
-                        <option>sdfsdfdsf</option>
+                    <select class="form-control" name="movie_id">
+                        <?php foreach($allMovies as $eachMovie): ?>
+                            <option value="<?= $eachMovie->getId() ?>"><?= $eachMovie->getTitle() ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group">

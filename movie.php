@@ -34,20 +34,6 @@
     if ($movie->getImage() == "") {
         $movie->setImage("movie_cover.jpg");
     }
-
-    // Checar se o filme é do usuário
-    $userOwnMovie = false;
-
-    if (!empty($userData)) {
-
-        if ($userData->getId() === $movie->getUsersId()) {
-            $userOwnMovie = true;
-        }
-
-        // Ver se o usuário já fez a review do filme
-        $alreadyReviewed = $reviewDAO->hasAlreadyReviewed($movie->getId(), $userData->getId());
-
-    }
    
     // Resgatar as reviews do filme
     $movieReviews = $reviewDAO->getMovieReviews($id);
