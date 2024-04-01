@@ -23,6 +23,15 @@ if ($review->userInfo->getImage() == "") {
                 <a href="#"> <?= $fullName ?></a>
             </h4>
             <p><i class="fas fa-star"></i> <?= $review->getRating() ?></p>
+            <ul class="author-menu">
+                <li>
+                    <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                    <div class="author-menu-drop">
+                        <a href="<?= $BASE_URL ?>editreview.php?id=<?= $review->getMovieId() ?>">Editar</a>
+                        <a href="<?= $BASE_URL ?>review_process.php?id=<?= $review->getMovieId() ?>">Deletar</a>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="col-md-12">
             <p><?= $review->getReview() ?></p>

@@ -417,11 +417,48 @@
 
 .author-details-container {
   padding-top: 20px;
+  position: relative;
 }
 
 .author-name a {
   color: #f5c518;
   text-decoration: none;
+}
+
+.author-menu {
+  position: absolute;
+  list-style-type: none;
+  left: 890px;
+  top: 25px;
+}
+
+.author-menu li button {
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+}
+
+.author-menu-drop {
+  position: absolute;
+  border: 1px solid #fff;
+  display: none;
+}
+
+.author-menu-drop a {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.author-menu li:hover .author-menu-drop {
+  display: block;
+}
+
+.author-menu-drop a:hover {
+  background-color: #f5c518;
 }
 
 .comment-title {
